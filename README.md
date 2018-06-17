@@ -1,0 +1,1 @@
+Following Stephen Grider's Server side rendering courese on Udemy
