@@ -9,13 +9,14 @@ import createStore from './helpers/createStore';
 import Routes from './client/Routes';
 
 const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || 'localhost';
 const app = express();
 
 app.use(
   '/api',
   proxy('http://react-ssr-api.herokuapp.com', {
   proxyReqOptDecorator(opts) {
-    opts.headers['x-forwarded-host'] = 'localhost:3000';
+    opts.headers['x-forwarded-host'] = `${HOST}:${PORT}`;
     return opts;
   } // not needed, just for this setup
 }));
@@ -55,6 +56,6 @@ app.get('*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log('Listening on port 3000 ...');
+  console.log(`Listening on port ${PORT} ...`);
 });
  
